@@ -25,9 +25,3 @@ def get_lecture(lecture_id: int, db: Session = Depends(get_db)):
     sections = lecture.sections
     for section in sections:
         print(section)
-    '''
-    Lecture(id=1,
-    title=[AI 실무] AI Research Engineer를 위한 논문 구현 시작하기 with PyTorch,
-    instructor=화이트박스,
-    platform=inflearn)
-    '''
