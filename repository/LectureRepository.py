@@ -3,8 +3,8 @@ from typing import Type
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 from repository.models import Lecture
-from response.LectureAllResponse import LectureAllResponse
-from response.LectureResponse import LectureResponse
+from router.response.LectureAllResponse import LectureAllResponse
+from router.response.LectureResponse import LectureResponse
 
 
 class LectureRepository:
