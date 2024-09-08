@@ -7,7 +7,7 @@ from router.request.note_request import NotePydantic
 router = APIRouter()
 
 
-@router.post("/api/note/summary")
+@router.post("/summary")
 async def post_summary(note: NotePydantic):
     ai_service = AiService()
     summary = ai_service.summary(note)

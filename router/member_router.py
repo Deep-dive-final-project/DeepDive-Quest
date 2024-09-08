@@ -8,7 +8,7 @@ from router.response.MemberResponse import MemberResponse
 router = APIRouter()
 
 
-@router.get("/api/member/{member_id}", response_model=MemberResponse)
+@router.get("/{member_id}", response_model=MemberResponse)
 def get_member(member_id: int, db: Session = Depends(get_db)):
     member_repository = MemberRepository(db)
     member = member_repository.get_member(member_id)
