@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
-from repository.LectureRepository import LectureRepository
+from repository.lecture_repository import LectureRepository
 from sqlalchemy.orm import Session
-from config.database.db_config import get_db
-from service.LectureService import LectureService
+from config.database.dbconfig import get_db
+from service.lecture_service import LectureService
 
 router = APIRouter()
 

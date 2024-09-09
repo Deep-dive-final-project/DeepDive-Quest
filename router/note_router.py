@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from config.database.db_config import get_db
-from service.AiService import AiService
+from config.database.dbconfig import get_db
+from service.ai_service import AiService
 from router.request.note_request import NotePydantic
 
 router = APIRouter()

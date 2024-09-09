@@ -1,14 +1,14 @@
 from langchain_openai import ChatOpenAI
 
-from repository.vector.VectorRepository import VectorRepository
+from repository.vector.vector_repository import VectorRepository
 from service.prompt import get_summary_prompt, get_answer_prompt
 from router.request.note_request import NotePydantic
-from config.ai.ai_env import OPENAI_API_KEY
+import os
 
 
 class AiService:
     def __init__(self):
-        self.llm = ChatOpenAI(model="gpt-4o", openai_api_key=OPENAI_API_KEY)
+        self.llm = ChatOpenAI(model="gpt-4o", openai_api_key=os.getenv('OPENAI_API_KEY'))
         self.vector_repository = VectorRepository()
 
     def summary(self, note: NotePydantic):
@@ -22,3 +22,6 @@ class AiService:
 
     def recommend(self, context: str):
         return self.vector_repository.get_retriever(context)
+
+    def create_quest(self):
+        pass

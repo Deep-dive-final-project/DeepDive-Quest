@@ -1,10 +1,10 @@
 from sqlalchemy.orm import Session
 
-from repository.LectureRepository import LectureRepository
+from repository.lecture_repository import LectureRepository
 from repository.models import Section
-from router.response.LectureListResponse import LectureListResponse
-from service.AiService import AiService
-from service.PlanService import PlanService
+from router.response.lecture_list_response import LectureListResponse
+from service.ai_service import AiService
+from service.plan_service import PlanService
 
 
 class LectureService:

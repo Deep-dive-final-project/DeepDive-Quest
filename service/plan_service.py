@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from repository.PlanRepository import PlanRepository
+from repository.plan_repository import PlanRepository
 
 
 class PlanService:
