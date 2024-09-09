@@ -29,7 +29,11 @@ class LectureRepository:
     def get_all_lectures(self):
         lectures = self.db.query(Lecture).all()
         return [LectureAllResponse(
+            id=lecture.lecture_id,
             title=lecture.title,
+            price=lecture.price,
+            image_url=lecture.image_url,
+            lecture_url=lecture.lecture_url,
             instructor=lecture.instructor,
             goals=lecture.goals.split('|') if lecture.goals else [],
             target=lecture.target.split('|') if lecture.target else [],
@@ -37,6 +41,3 @@ class LectureRepository:
             sub_sections=[section.sub_section if section.sub_section is not None else "" for section in
                           lecture.sections] if lecture.sections else []
         ) for lecture in lectures]
-
-    def count_lectures(self) -> int:
-        return self.db.query(func.count(Lecture.lecture_id)).scalar()

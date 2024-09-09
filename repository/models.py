@@ -63,8 +63,9 @@ class Plan(Base):
 
     plan_id = Column(BigInteger, primary_key=True, autoincrement=True)
     title = Column(String(255), nullable=False)
-    start_date = Column(TIMESTAMP, nullable=False)
-    end_date = Column(TIMESTAMP, nullable=False)
+    start_date = Column(TIMESTAMP, nullable=True)
+    end_date = Column(TIMESTAMP, nullable=True)
+    update_date = Column(TIMESTAMP, nullable=True)
     description = Column(Text, nullable=True)
     state = Column(String(255), nullable=True)
     lecture_id = Column(BigInteger, ForeignKey("lecture.lecture_id", ondelete="CASCADE"), nullable=False)
@@ -73,6 +74,9 @@ class Plan(Base):
     lecture = relationship("Lecture", back_populates="plans")
     member = relationship("Member", back_populates="plans")
     tasks = relationship("Task", back_populates="plan")
+
+    def __str__(self):
+        return f"<Plan(id={self.plan_id}, title={self.title})>"
 
 
 class Task(Base):
@@ -90,6 +94,9 @@ class Task(Base):
     plan = relationship("Plan", back_populates="tasks")
     section = relationship("Section", back_populates="tasks")
     quests = relationship("Quest", back_populates="task")
+
+    def __str__(self):
+        return f"<Task(id={self.task_id}, title={self.title})>"
 
 
 class Quest(Base):
