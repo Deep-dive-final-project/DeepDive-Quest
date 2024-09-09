@@ -12,3 +12,6 @@ class PlanService:
 
     def get_latest_plan(self):
         return self.plan_repository.get_latest_plan()
+
+    def get_plan(self, plan_id: int):
+        return self.plan_repository.get_plan(plan_id)

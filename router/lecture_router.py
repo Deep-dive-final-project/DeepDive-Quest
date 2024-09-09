@@ -7,10 +7,16 @@ from service.LectureService import LectureService
 router = APIRouter()
 
 
+@router.get("/recommend/study-plan")
+def get_lecture_recommend(plan_id: int, db: Session = Depends(get_db)):
+    lecture_service = LectureService(db)
+    return lecture_service.recommend_lecture(plan_id)
+
+
 @router.get("/recommend")
 def get_lecture_recommend(db: Session = Depends(get_db)):
     lecture_service = LectureService(db)
-    return lecture_service.recommend_lecture()
+    return lecture_service.recommend_latest_lecture()
 
 
 @router.get("/{lecture_id}")
