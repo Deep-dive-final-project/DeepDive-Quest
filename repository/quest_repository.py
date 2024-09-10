@@ -34,7 +34,7 @@ class QuestRepository:
                               task_id=quest_data['task_id'],
                               created_date=datetime.now().date(),
                               state=QuestState.UNSOLVED,
-                              member_id=1)
+                              member_id=4)
 
             self.db.add(new_quest)
             self.db.commit()

@@ -65,7 +65,6 @@ class Plan(Base):
     title = Column(String(255), nullable=False)
     start_date = Column(TIMESTAMP, nullable=True)
     end_date = Column(TIMESTAMP, nullable=True)
-    update_date = Column(TIMESTAMP, nullable=True)
     description = Column(Text, nullable=True)
     state = Column(String(255), nullable=True)
     lecture_id = Column(BigInteger, ForeignKey("lecture.lecture_id", ondelete="CASCADE"), nullable=False)
