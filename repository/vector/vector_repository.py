@@ -14,4 +14,4 @@ class VectorRepository:
         index_name = 'inflearn-lectures'
         database = PineconeVectorStore.from_existing_index(index_name=index_name, embedding=embedding)
         retriever = database.as_retriever(search_kwargs={'k': 4})
-        return retriever.get_relevant_documents(query)
+        return retriever.invoke(query)
