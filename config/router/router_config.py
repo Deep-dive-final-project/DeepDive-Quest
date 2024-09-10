@@ -5,7 +5,7 @@ from router.quest_router import router as quest_router
 
 
 def init_router(app):
-    app.include_router(lecture_router, prefix="/api/lecture")
-    app.include_router(member_router, prefix="/api/member")
-    app.include_router(note_router, prefix="/api/note")
-    app.include_router(quest_router, prefix="/api/quest")
+    app.include_router(lecture_router, prefix="/ai/lecture")
+    app.include_router(member_router, prefix="/ai/member")
+    app.include_router(note_router, prefix="/ai/note")
+    app.include_router(quest_router, prefix="/ai/quest")
