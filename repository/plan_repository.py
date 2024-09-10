@@ -14,7 +14,7 @@ class PlanRepository:
         return self.db.query(Plan).filter(Plan.state == "on_going").all()
 
     def get_latest_plan(self):
-        return self.db.query(Plan).filter(Plan.state == 'on_going').order_by(desc(Plan.update_date)).first()
+        return self.db.query(Plan).filter(Plan.state == 'on_going').order_by(desc(Plan.modified_date)).first()
 
     def get_plan(self, plan_id: int) -> Type[Plan] | None:
         return self.db.query(Plan).filter(Plan.plan_id == plan_id).first()
