@@ -1,7 +1,8 @@
+import logging
+
 from sqlalchemy.orm import Session
 
 from repository.lecture_repository import LectureRepository
-from repository.models import Section
 from router.response.lecture_list_response import LectureListResponse
 from service.ai_service import AiService
 from service.plan_service import PlanService
@@ -34,7 +35,8 @@ class LectureService:
                     ) for result in results[1:]]},
                 "error": None
             }
-        except:
+        except Exception as e:
+            logging.error(f"Error updating Quest {e}")
             return {
                 "success": False,
                 "data": None,
@@ -62,7 +64,8 @@ class LectureService:
                     ) for result in results[1:]]},
                 "error": None
             }
-        except:
+        except Exception as e:
+            logging.error(f"[LectureService] recommend_latest_lecture {e}")
             return {
                 "success": False,
                 "data": None,
