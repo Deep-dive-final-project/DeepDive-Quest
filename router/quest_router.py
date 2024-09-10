@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from config.database.dbconfig import get_db
 from router.request.quest_answer_request import QuestAnswerRequest
+from router.response.quest_response import CreateQuestResponse
 from service.quest_service import QuestService
 
 router = APIRouter()
@@ -36,7 +37,21 @@ def get_member(quest_id: int, request: QuestAnswerRequest, db: Session = Depends
 
 @router.post("")
 def create_quest(db: Session = Depends(get_db)):
-    quest_service = QuestService(db)
-    return quest_service.create_quest()
-
-
+    try:
+        quest_service = QuestService(db)
+        quest = quest_service.create_quest()
+        return {
+            'success': True,
+            'data': {
+                'quest_id': quest.quest_id,
+                'content': quest.content
+            },
+            'error': None
+        }
+    except Exception as e:
+        logging.error(f"Error occurred: {str(e)}")
+        return CreateQuestResponse(
+            success=False,
+            data=None,
+            error=str(e)
+        )

@@ -1,9 +1,10 @@
 from langchain_openai import ChatOpenAI
 
 from repository.vector.vector_repository import VectorRepository
-from service.prompt import get_summary_prompt, get_answer_prompt
+from service.prompt import get_summary_prompt, get_answer_prompt, create_question_prompt
 from router.request.note_request import NotePydantic
 import os
+import json
 
 
 class AiService:
@@ -23,5 +24,6 @@ class AiService:
     def recommend(self, context: str):
         return self.vector_repository.get_retriever(context)
 
-    def create_quest(self):
-        pass
+    def create_quest(self, plan: str, section: str, sub_sections: str):
+        response = self.llm.invoke(create_question_prompt(plan, section, sub_sections))
+        return json.loads(response.content)['quest_content']

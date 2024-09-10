@@ -99,11 +99,12 @@ class Task(Base):
         return f"<Task(id={self.task_id}, title={self.title})>"
 
 
-class Quest(Base):
-    class QuestState(enum.Enum):
-        SOLVED = "SOLVED"
-        UNSOLVED = "UNSOLVED"
+class QuestState(enum.Enum):
+    SOLVED = "SOLVED"
+    UNSOLVED = "UNSOLVED"
 
+
+class Quest(Base):
     __tablename__ = "quest"
 
     quest_id = Column(BigInteger, primary_key=True, autoincrement=True)
