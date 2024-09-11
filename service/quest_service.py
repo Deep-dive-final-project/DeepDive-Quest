@@ -26,6 +26,8 @@ class QuestService:
     def create_quest(self):
         data = {}
         tasks = self.task_service.get_todays_task()
+        if not tasks:
+            return []
         for task in tasks:
             if task.plan.title not in data:
                 data[task.plan.title] = []
@@ -41,10 +43,7 @@ class QuestService:
         selected_task = self.task_service.get_task(selected_section['task_id'])
         sub_sections = selected_task.section.sub_section
         title = selected_task.title
-        content = self.ai_service.create_quest(plan, title, sub_sections)
-        quest = {
-            'quest_content': content,
-            'task_id': selected_section['task_id']
-        }
+        task_id = selected_section['task_id']
+        quest = self.ai_service.create_quest(plan, title, sub_sections, task_id)
         quest = self.quest_repository.save(quest)
         return quest

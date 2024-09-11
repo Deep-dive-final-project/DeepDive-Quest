@@ -47,11 +47,15 @@ def create_quest(db: Session = Depends(get_db)):
                 'content': quest.content
             },
             'error': None
+        } if quest else {
+            'success': False,
+            'data': None,
+            'error': str('오늘 완료한 태스크가 존재하지 않습니다')
         }
     except Exception as e:
         logging.error(f"Error occurred: {str(e)}")
-        return CreateQuestResponse(
-            success=False,
-            data=None,
-            error=str(e)
-        )
+        return {
+            "success": False,
+            "data": None,
+            "error": str(e)
+        }
