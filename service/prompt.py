@@ -1,7 +1,7 @@
 def get_summary_prompt(context: str):
     return f'''
 # 요구 사항
-- **html문서로 작성해주세요. 가독성을 고려해야 합니다.**
+- **markdown문서로 작성해주세요. 가독성을 고려해야 합니다.**
 - **문장이 길다고 판단되면 다음 줄에 작성해주세요.**
 - 내용: []에 오는 내용을 사람이 읽기 좋게 가독성을 고려해서 요약해주세요.
 - 모르는 정보면 모른다고 답변해주세요.
@@ -43,56 +43,45 @@ def get_summary_prompt(context: str):
 
 
 # 답변 양식 예시
-<html>
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
-<h2>강의 목적</h2>
-<ul>
-    <li></li>
-    <li></li>
-</ul>
- 
-<h2>용어 정리</h2>
-    <li></li>
-    <li></li>
-    <li></li>
+## 강의 목적
+- 
+- 
 
-<h2>본문요약</h2>
-  <h3>본문요약1</h3>
-  <p>본문 내용</p>
-  <code>
-    Member member = new Member();
-    member.setId("member1");
-    member.setUsername("회원1");
-  </code>
-  
-  (최적화된 코드)
-  <code>
+## 용어 정리
+- 
+- 
+- 
+
+## 본문요약
+
+### 본문요약1
+본문 내용
+
+```java
+Member member = new Member();
+member.setId("member1");
+member.setUsername("회원1");
+```
+
+(최적화된 코드)
+```
     // 최적화되었거나 추천하는 코드를 작성
     // 추천하는 코드가 없다면 작성하지 않아도 됩니다
-  <code>
-    
-    
-  <h3>본문요약2</h3>
-  <p>본문 내용</p>
+```
 
-<h2>결론</h2>
-<ul>
-    <li></li>
-    <li></li>
-    <li></li>
-</ul>
+### 본문요약2
+본문 내용
 
-<h2>관련 레퍼런스</h2>
-<ul>
-    <li></li>
-    <li></li>
-    <li></li>
-</ul>
-<body>
-</html>
+## 결론
+- 
+- 
+- 
+
+## 관련 레퍼런스
+- 
+- 
+- 
+
 ---
 내용: [{context}]
 '''
